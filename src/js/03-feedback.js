@@ -12,9 +12,15 @@ form.addEventListener('input', throttle(onFormInput, 500));
 populateTextarea();
 
 function onFormSubmit(evt) {
+  formData.email = inputEmail.value;
+  formData.message = inputMessage.value.trim();
+  if (formData.email === '' || formData.message === '') {
+    return alert('Усі поля повинні бути заповнені!');
+  }
   evt.preventDefault();
   evt.target.reset();
   localStorage.removeItem(STORAGE_KEY);
+
   console.log(formData);
 }
 
